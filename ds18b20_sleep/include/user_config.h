@@ -4,8 +4,6 @@
 #define HTTP_DEBUG	false
 #define DHT22_DEBUG	false
 
-//#define WIFI_CLIENTSSID		"MYAP"
-//#define WIFI_CLIENTPASSWORD	"00000000"
 #define WIFI_CLIENTSSID		"BONOBO"
 #define WIFI_CLIENTPASSWORD	"FFFFEEEE00"
 
@@ -17,7 +15,6 @@
 //#define THINGSPEAK_SERVER	"api.thingspeak.com"
 
 // Thingspeak channel write API key
-//#define THINGSPEAK_API_KEY	"CL00000000000000"
 #define THINGSPEAK_API_KEY	"PIPILRXAIE7URX46"
 
 #endif

@@ -4,7 +4,6 @@
 #include <mem.h>
 #include <os_type.h>
 #include "httpclient.h"
-#include "driver/dht22.h"
 #include "user_config.h"
 #include "driver/ds18b20.h"
 

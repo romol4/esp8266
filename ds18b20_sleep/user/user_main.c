@@ -4,7 +4,6 @@
 #include <mem.h>
 #include <os_type.h>
 #include "httpclient.h"
-#include "driver/dht22.h"
 #include "user_config.h"
 #include "driver/ds18b20.h"
 
@@ -85,19 +84,20 @@ void user_rf_pre_init(void)
 int ICACHE_FLASH_ATTR ds18b20()
 {
 	int r, i;
-	uint8_t addr[8], data[12];
+	uint8_t data[12];
+	uint8_t addr[] = "\x28\xff\x78\x01\x01\x15\x03\xce";
 
 	ds_init();
 	reset();
 
-	select("\x28\xff\x78\x01\x01\x15\x03\xce");
+	select(addr);
 	write(DS1820_CONVERT_T, 1); // perform temperature conversion
 
 	os_delay_us(1000*1000); // sleep 1s
 
 	reset();
 
-	select("\x28\xff\x78\x01\x01\x15\x03\xce");
+	select(addr);
 	write(DS1820_READ_SCRATCHPAD, 0); // read scratchpad
 	
 	for(i = 0; i < 9; i++)
@@ -119,15 +119,15 @@ int ICACHE_FLASH_ATTR ds18b20()
     unsigned int vdd = readvdd33();
 
     wifi_get_ip_info(STATION_IF, &ipConfig);
-	static char temp[10];
-	static char http_data[256];
+    static char temp[10];
+    static char http_data[256];
 
     os_sprintf(temp, "%d.%d", Whole, Fract < 10 ? 0 : Fract);
     // Start the connection process
     os_sprintf(http_data, "http://%s/update?key=%s&field1=%s&field3=%d", THINGSPEAK_SERVER, THINGSPEAK_API_KEY, temp, vdd);
     http_get(http_data, "", thingspeak_http_callback);
 
-	return r;
+    return r;
 }
 
 void user_init(void)

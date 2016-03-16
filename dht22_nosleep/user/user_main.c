@@ -135,7 +135,6 @@ static ETSTimer sleep_timer;
 LOCAL void ICACHE_FLASH_ATTR sleep_cb(void *arg)
 {
     os_timer_disarm(&sleep_timer);
-//    system_deep_sleep(10*60*1000*1000);//second*1000*1000
     system_deep_sleep_set_option( 1 );
     system_deep_sleep(60*1000*1000);//second*1000*1000
 }

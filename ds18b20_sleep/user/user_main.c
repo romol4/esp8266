@@ -31,7 +31,7 @@ LOCAL void ICACHE_FLASH_ATTR sleep_cb(void *arg)
 {
     os_timer_disarm(&sleep_timer);
     system_deep_sleep_set_option( 1 );
-    system_deep_sleep(60*1000*1000);//second*1000*1000
+    system_deep_sleep(DATA_SEND_DELAY*1000);//second*1000*1000
 }
 
 LOCAL void ICACHE_FLASH_ATTR thingspeak_http_callback(char * response, int http_status, char * full_response)
@@ -40,7 +40,7 @@ LOCAL void ICACHE_FLASH_ATTR thingspeak_http_callback(char * response, int http_
 	{
         os_timer_disarm(&sleep_timer);
         os_timer_setfn(&sleep_timer, sleep_cb, NULL);
-        os_timer_arm(&sleep_timer, 2000, 1); //5s
+        os_timer_arm(&sleep_timer, 500, 1); //5s
 	}
 }
 

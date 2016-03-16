@@ -7,8 +7,8 @@
 #define WIFI_CLIENTSSID		"BONOBO"
 #define WIFI_CLIENTPASSWORD	"FFFFEEEE00"
 
-#define DATA_SEND_DELAY 3000	/* milliseconds */
-#define WIFI_CHECK_DELAY 2000	/* milliseconds */
+#define DATA_SEND_DELAY 600*1000	/* milliseconds */
+#define WIFI_CHECK_DELAY 4000	/* milliseconds */
 
 // Thingspeak server address
 #define THINGSPEAK_SERVER	"184.106.153.149"

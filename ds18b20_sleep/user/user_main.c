@@ -38,6 +38,8 @@ LOCAL void ICACHE_FLASH_ATTR thingspeak_http_callback(char * response, int http_
 {
 	if (http_status == 200)
 	{
+        os_timer_disarm(&WiFiLinker);
+
         os_timer_disarm(&sleep_timer);
         os_timer_setfn(&sleep_timer, sleep_cb, NULL);
         os_timer_arm(&sleep_timer, 500, 1); //5s
